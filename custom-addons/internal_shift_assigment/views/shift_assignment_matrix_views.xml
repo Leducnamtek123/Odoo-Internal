@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_shift_assignment_matrix_list" model="ir.ui.view">
+        <field name="name">shift.assignment.matrix.list</field>
+        <field name="model">shift.assignment.matrix</field>
+        <field name="arch" type="xml">
+            <list string="Shift Assignment Matrices">
+                <field name="name"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="employee_ids" widget="many2many_tags"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-warning="state == 'to_approve'" decoration-success="state == 'approved'" decoration-danger="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_shift_assignment_matrix_form" model="ir.ui.view">
+        <field name="name">shift.assignment.matrix.form</field>
+        <field name="model">shift.assignment.matrix</field>
+        <field name="arch" type="xml">
+            <form string="Shift Assignment Matrix">
+                <header>
+                    <button name="action_set_to_draft" type="object" string="Draft" invisible="not (state in ['to_approve','approved','cancel'])"/>
+                    <button name="action_submit" type="object" string="To Approve" invisible="state != 'draft'"/>
+                    <button name="action_approve" type="object" string="Approved" invisible="state != 'to_approve'"/>
+                    <button name="action_cancel" type="object" string="Cancel" invisible="state == 'cancel'"/>
+                    <button name="action_open_import_wizard" type="object" string="Import" class="btn-primary" invisible="state == 'approved'"/>
+                    <button name="action_template" type="object" string="Export" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_approve,approved,cancel"/>
+                </header>
+                <group>
+                    <field name="name"/>
+                    <field name="start_date" readonly="state != 'draft'"/>
+                    <field name="end_date" readonly="state != 'draft'"/>
+                    <field name="employee_ids" widget="many2many_tags" readonly="state != 'draft'"/>
+                </group>
+                <notebook>
+                    <page string="Matrix">
+                        <field name="line_ids" widget="x2many_2d_matrix" field_y_axis="employee_id" field_x_axis="date_text" field_value="calendar_id" show_row_totals="0" show_column_totals="0" limit="9999" readonly="state != 'draft'">
+                            <list limit="9999">
+                                <field name="employee_id"/>
+                                <field name="date"/>
+                                <field name="date_text" invisible="1"/>
+                                <field name="calendar_id"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shift_assignment_matrix" model="ir.actions.act_window">
+        <field name="name">Shift Assignment Matrix</field>
+        <field name="res_model">shift.assignment.matrix</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="menu_work_shift_root_matrix" model="ir.ui.menu">
+        <field name="name">Work Shifts</field>
+        <field name="parent_id" ref="hr.menu_hr_root"/>
+        <field name="sequence" eval="10"/>
+    </record>
+    <menuitem id="menu_shift_assignment_matrix_hr" name="Shift Assignment Matrix" parent="menu_work_shift_root_matrix" action="action_shift_assignment_matrix" sequence="10"/>
+</odoo>
+

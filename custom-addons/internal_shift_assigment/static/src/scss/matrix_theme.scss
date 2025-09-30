@@ -1,0 +1,128 @@
+.o_field_widget {
+    display: inline;
+}
+
+.o_form_view .o_field_x2many_2d_matrix {
+    .o_list_table {
+        min-width: max-content;
+        width: 100%;
+        table-layout: fixed;
+        border-collapse: separate;
+        border-spacing: 0;
+
+        th,
+        td {
+            text-align: center !important;
+            vertical-align: middle;
+            width: 135px;
+            min-width: 135px;
+            max-width: 135px;
+
+            border-right: 1px solid #000 !important;
+            border-bottom: 1px solid #000 !important;
+        }
+
+        /* Header sticky + cùng màu với cột nhân viên */
+        thead tr th {
+            position: sticky;
+            top: 0;
+            z-index: 20; /* cao hơn td */
+            background-color: #f7f4f4; /* đồng bộ màu */
+            border-top: 1px solid #000 !important;
+        }
+
+        /* Cột đầu tiên sticky */
+        th:first-child,
+        td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 25;
+            background-color: #f7f4f4;
+            border-left: 1px solid #000 !important;
+        }
+
+        /* Ô góc trên bên trái */
+        thead tr th:first-child {
+            z-index: 30; /* cao nhất */
+        }
+
+        /* Cột cuối cùng */
+        .o_list_table tr th:last-child {
+            border-right: 1px solid #000 !important;
+            background-color: #f7f4f4 !important;  /* Header cuối có màu */
+        }
+
+        .o_list_table tr td:last-child {
+            border-right: 1px solid #000 !important;
+            background-color: #fff !important; /* Cell cuối vẫn trắng */
+        }
+
+        /* Bỏ hover effect */
+        tr:hover,
+        td:hover,
+        th:hover {
+            background-color: transparent !important;
+        }
+    }
+
+    /* Canh giữa widget */
+    .o_field_widget {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Many2one selection */
+    .o_field_many2one_selection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+
+        .o-autocomplete {
+            width: 100%;
+        }
+        .o-autocomplete--input {
+            text-align: center !important;
+            padding: 2px 4px;   /* gọn gàng hơn */
+            border-radius: 0 !important; /* bỏ bo tròn */
+            min-height: 1.6rem;
+        }
+    }
+
+    /* Many2one readonly look */
+    .o_list_table td .o_field_widget.o_many2one {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.25;
+        min-height: 1.6rem;
+        min-width: 3.25rem;
+    }
+
+    .o_list_table td .o_field_widget.o_many2one.o_readonly,
+    .o_matrix_chip .o_form_uri,
+    .o_matrix_chip.o_field_widget.o_readonly {
+        background-color: var(--o-brand-600);
+        border-color: transparent;
+    }
+
+    .o_field_widget.o_readonly {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        background-color: var(--o-gray-200);
+        color: var(--o-gray-900);
+        min-height: 1.6rem;
+    }
+
+    /* Placeholder cho cell trống */
+    .o_field_widget:empty::after {
+        content: "";
+        display: inline-block;
+        min-height: 1.75rem;
+    }
+}
