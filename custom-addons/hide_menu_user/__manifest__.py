@@ -22,7 +22,7 @@
 {
     'name': 'Hide Any Menu User Wise',
     'version': '19.0.1.0.0',
-    'category': 'Extra Tools',
+    "category": "INTERNAL",
     'summary': 'This Module Helps To Hide any Menu items user wise.',
     'description': """This module provides functionality to hide or restrict menu 
     items on a per-user basis in Odoo.

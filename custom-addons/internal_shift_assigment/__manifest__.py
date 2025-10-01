@@ -1,8 +1,8 @@
 {
 	'name': 'Shift Assignment Matrix',
-	'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
 	'summary': 'Assign worker shifts on an Employee x Date matrix using web_widget_x2many_2d_matrix',
-	'category': 'Human Resources',
+    "category": "INTERNAL",
 	'license': 'AGPL-3',
 	'depends': ['base', 'hr', 'web_widget_x2many_2d_matrix'],
 	'data': [
@@ -20,5 +20,6 @@
 	},
 	'installable': True,
 	'application': False,
+    "auto_install": False,
 }
 

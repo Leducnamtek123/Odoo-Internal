@@ -1,6 +1,6 @@
 {
     "name": "Main Menu",
-    "version": "19.0.1.2.0",
+    'version': '19.0.1.0.0',
     "summary": "Enhanced navigation module for Odoo Community Edition.",
     "description": """
         This module provides a centralized main menu for Odoo Community Edition, allowing users to quickly access core modules and enhance their workflow.
@@ -11,7 +11,7 @@
     "maintainer": "Axel Manzanilla",
     "website": "https://axelmanzanilla.com",
     "license": "LGPL-3",
-    "category": "Technical/Technical",
+    "category": "INTERNAL",
     "depends": [
         "web",
     ],
