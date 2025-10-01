@@ -1,0 +1,45 @@
+/* Switcher CSS */
+.o-switch {
+    position: relative !important;
+    display: inline-block !important;
+    width: 40px !important;
+    height: 20px !important;
+}
+
+.o-switch-input {
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.o-switch-slider {
+    position: absolute !important;
+    cursor: pointer !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: #ccc !important;
+    transition: 0.4s !important;
+    border-radius: 34px !important;
+}
+
+.o-switch-slider:before {
+    position: absolute !important;
+    content: "" !important;
+    height: 18px !important;
+    width: 18px !important;
+    left: 3px !important;
+    bottom: 3px !important;
+    background-color: white !important;
+    transition: 0.4s !important;
+    border-radius: 50% !important;
+}
+
+.o-switch-input:checked + .o-switch-slider {
+    background-color: #4caf50 !important;
+}
+
+.o-switch-input:checked + .o-switch-slider:before {
+    transform: translateX(26px) !important;
+}

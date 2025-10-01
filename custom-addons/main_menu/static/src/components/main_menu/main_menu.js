@@ -1,4 +1,4 @@
-import { Component, onWillStart } from "@odoo/owl";
+import { Component, onWillStart, useState } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { WidgetHour } from "@main_menu/components/widget_hour/widget_hour";
@@ -22,6 +22,16 @@ class MenuAction extends Component {
         this.apps = this.menuService.getApps()
                         .filter(app => app.xmlid != "main_menu.main_menu_root")
                         .sort((a, b) => a.name.localeCompare(b.name));
+
+        // --- state để lưu dark mode ---
+        this.state = useState({
+            isDarkMode: document.body.classList.contains("dark-mode"),
+        });
+
+        // Lắng nghe thay đổi class dark-mode trên body nếu cần update động
+        new MutationObserver(() => {
+            this.state.isDarkMode = document.body.classList.contains("dark-mode");
+        }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
 
         onWillStart(async () => {
             try {
